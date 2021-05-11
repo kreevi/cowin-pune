@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pune | Cowin</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <a href="mailto:anand.patil@kreevi.com">Built by <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 963.64 369.95"><defs><linearGradient id="linear-gradient" x1="910.8" y1="200.81" x2="854.55" y2="144.55" gradientTransform="matrix(-1, 0, 0, 1, 1000, 0)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4f3b92"/><stop offset="1" stop-color="#fff"/></linearGradient></defs><title>kreevi</title><g style="isolation:isolate"><g id="Layer_1" data-name="Layer 1"><text transform="translate(275.21 271.78)" style="font-size:250.795654296875px;fill:#a7aa00;font-family:TimeBurner-Bold, TimeBurner"><tspan style="font-weight:700">K</tspan><tspan x="151.23" y="0" style="font-family:TimeBurner, TimeBurner;letter-spacing:-0.06000044779359441em">r</tspan><tspan x="222.96" y="0" style="fill:#066;font-family:TimeBurner, TimeBurner;letter-spacing:-0.014995244626720233em">e</tspan><tspan x="372.68" y="0" style="fill:#066;font-family:TimeBurner, TimeBurner;letter-spacing:-0.05299150457674257em">e</tspan><tspan x="512.88" y="0" style="fill:#066;font-family:TimeBurner, TimeBurner">vi</tspan></text><path d="M205,15,65.72,135.4c-50.85,43.94-50.85,115.19,0,159.13h0L205,174.16C255.85,130.22,255.85,59,205,15" transform="translate(-18.18 -15.03)" style="fill:#066"/><path d="M90.05,114.37l32.38-28h0c-17.88,15.46-17.88,40.52,0,56l59.69,51.58h0L90.05,273.51h0C39.2,229.56,39.2,158.31,90.05,114.37Z" transform="translate(-18.18 -15.03)" style="mix-blend-mode:multiply;fill:url(#linear-gradient)"/><path d="M51.39,147.51h0l28.2-24.37h0C64,136.6,64,158.42,79.59,171.88l52,44.92L293,356.27h0c-44.28,38.27-116.07,38.27-160.35,0L51.39,286.09h0C7.11,247.82,7.11,185.78,51.39,147.51Z" transform="translate(-18.18 -15.03)" style="fill:#a7aa00"/></g></g></svg></a>
+    </header>
+    <div class="wrapper">
+        <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_r71cen62.json" background="transparent" speed="0.75" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+    </div>
+</body>
+<style>
+    header {
+        width: 100%;
+        font-size: 14px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    header a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: #111;
+    }
+    
+    header svg {
+        width: 75px;
+    }
+    
+    html {
+        font-size: 24px;
+        line-height: 1.5;
+        font-family: 'Lato', 'Montserrat', sans-serif;
+        background: #fafafa;
+    }
+    
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, min-content));
+        flex-wrap: wrap;
+        gap: 20px;
+        margin: 20px;
+    }
+    
+    .container,
+    lottie-player {
+        display: grid;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.20);
+        background: #fff;
+    }
+    
+    p {
+        margin: 0;
+    }
+    
+    @media(max-width:700px) {
+        body {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+<script>
+    (function($) {
+        Date.prototype.yyyymmdd = function() {
+            var yyyy = this.getFullYear().toString();
+            var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
+            var dd = this.getDate().toString();
+            return (dd[1] ? dd : "0" + dd[0]) + "/" + (mm[1] ? mm : "0" + mm[0]) + "/" + yyyy; // padding
+        };
+
+        var date = new Date();
+        console.log(date.yyyymmdd())
+
+        var district = 363;
+
+        var fetchurl = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=' + district + '&date=' + date;
+
+        function fetchdata() {
+            $.ajax({
+                url: fetchurl,
+                method: "GET",
+                type: "JSON",
+                contentType: 'application/json; charset=utf-8',
+                success: function(data) {
+                    // $("#data").html(JSON.stringify(data.sessions, null, 2));
+
+                    console.log(data.sessions);
+
+                    resdata = data.sessions;
+                    var htmlText = '';
+                    for (var key in resdata) {
+                        htmlText += '<div class="container">';
+                        htmlText += '<p>Name:' + resdata[key].name + '</p>';
+                        htmlText += '<p>Pincode:' + resdata[key].pincode + '</p>';
+                        htmlText += '<p>Address:' + resdata[key].address + '</p>';
+                        htmlText += '<p>Available:' + resdata[key].available_capacity + '</p>';
+                        htmlText += '<p>Vaccine:' + resdata[key].vaccine + '</p>';
+                        htmlText += '<p>Min Age:' + resdata[key].min_age_limit + '</p>';
+                        htmlText += '</div>';
+                    }
+
+                    $('.wrapper').prepend(htmlText);
+
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            setInterval(fetchdata, 3000);
+        });
+
+
+
+    })(jQuery);
+</script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+</html>
