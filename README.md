@@ -1,7 +1,7 @@
 # cowin-pune
 Pune vaccination slot search
 
-You can view the site --> #https://kreevi.github.io/cowin-pune/
+You can view the site --> https://kreevi.github.io/cowin-pune/
 
 -- Want to view locally? --
 - Download the file and open it in your browser and you are good to go.
