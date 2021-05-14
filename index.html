@@ -114,7 +114,7 @@
             var yyyy = this.getFullYear().toString();
             var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
             var dd = this.getDate().toString();
-            return (dd[1] ? dd : "0" + dd[0]) + "/" + (mm[1] ? mm : "0" + mm[0]) + "/" + yyyy; // padding
+            return (dd[1] ? dd : "0" + dd[0]) + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + yyyy; // padding
         };
 
         var date = new Date();
@@ -122,10 +122,11 @@
 
         var district = 57;
 
-        var fetchurl = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=' + district + '&date=15-05-2021';
+        var fetchurl = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=' + district + '&date=' + date.yyyymmdd();
 
         function fetchdata() {
             $.ajax({
+                // url: 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=57&date=15-05-2021',
                 url: fetchurl,
                 method: "GET",
                 type: "JSON",
@@ -139,13 +140,13 @@
                     var htmlText = '';
                     for (var key in resdata) {
                         htmlText += '<div class="container">';
-                        htmlText += '<p>Name:' + resdata[key].name + '</p>';
-                        htmlText += '<p>Pincode:' + resdata[key].pincode + '</p>';
-                        htmlText += '<p>Address:' + resdata[key].address + '</p>';
-                        htmlText += '<p>Doses Available:' + resdata[key].available_capacity + '</p>';
-                        htmlText += '<p>Vaccine:' + resdata[key].vaccine + '</p>';
-                        htmlText += '<p>Min Age:' + resdata[key].min_age_limit + '</p>';
-                        htmlText += '<p>Time Slot:' + resdata[key].from + 'To' + resdata[key].to + '</p>';
+                        htmlText += '<p>Name: ' + resdata[key].name + '</p>';
+                        htmlText += '<p>Pincode: ' + resdata[key].pincode + '</p>';
+                        htmlText += '<p>Address: ' + resdata[key].address + '</p>';
+                        htmlText += '<p>Doses Available: ' + resdata[key].available_capacity + '</p>';
+                        htmlText += '<p>Vaccine: ' + resdata[key].vaccine + '</p>';
+                        htmlText += '<p>Min Age: ' + resdata[key].min_age_limit + '</p>';
+                        htmlText += '<p>Time Slot: ' + resdata[key].from + ' To ' + resdata[key].to + '</p>';
                         htmlText += '</div>';
                     }
 
@@ -156,7 +157,7 @@
         }
 
         $(document).ready(function() {
-            setInterval(fetchdata, 3000);
+            setInterval(fetchdata, 10000);
         });
 
 
