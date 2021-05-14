@@ -24,6 +24,9 @@
                 <li>You won't see any slots displayed if they are not being added to the Cowin website</li>
                 <li>All the data will be reset once you refresh or close the page</li>
             </ul>
+            <audio class="audioPlayer">
+                <source src="https://kreevi.github.io/cowin-pune/notification.wav" type="audio/wav">
+              </audio>
         </div>
     </div>
     <footer>
@@ -92,6 +95,16 @@
         border-radius: 5px;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.20);
         background: #fff;
+        animation: border-anim 1s ease-in-out forwards;
+    }
+    
+    @keyframes border-anim {
+        from {
+            box-shadow: 0 2px 2px 0 #066, 0 3px 1px -2px #066, 0 1px 5px 0 #066;
+        }
+        to {
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.20);
+        }
     }
     
     .container ul {
@@ -121,7 +134,7 @@
         var date = new Date();
         console.log(date.yyyymmdd())
 
-        var district = 363;
+        var district = 396;
 
         var fetchurl = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=' + district + '&date=' + date.yyyymmdd();
 
@@ -152,6 +165,8 @@
                     }
 
                     $('.wrapper').prepend(htmlText);
+                    $(".audioPlayer")[0].play();
+
 
                 }
             });
