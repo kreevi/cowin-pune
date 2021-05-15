@@ -165,8 +165,11 @@
                     }
 
                     $('.wrapper').prepend(htmlText);
-                    $(".audioPlayer")[0].play();
-
+                    
+                     if (resdata[0] != '') {
+                        console.log(resdata[0]);
+                        $(".audioPlayer")[0].play();
+                    }
 
                 }
             });
