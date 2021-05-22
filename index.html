@@ -31,6 +31,7 @@
     </div>
     <footer>
         <p>Data being sourced from the <a href="https://apisetu.gov.in/public/api/cowins" target="_blank">Cowin API</a></p>
+        <a href="#top" id="toTop"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 8 8"><path d="M4 1L0 5l1.5 1.5L4 4l2.5 2.5L8 5L4 1z" fill="#626262"/></svg></a>
     </footer>
 </body>
 <style>
@@ -40,6 +41,7 @@
         line-height: 1.5;
         font-family: 'Montserrat', 'Lato', sans-serif;
         background: #fafafa;
+        scroll-behavior: smooth;
     }
     
     body {
@@ -102,6 +104,28 @@
     
     .initial-container {
         height: auto;
+    }
+    
+    #toTop {
+        position: fixed;
+        right: 10px;
+        bottom: 50px;
+        background-color: #fff;
+        border: 2px solid #066;
+        border-radius: 50%;
+        padding: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        line-height: 1;
+    }
+    
+    #toTop svg {
+        width: 25px;
+        height: 25px;
+    }
+    
+    #toTop svg path {
+        fill: #066;
     }
     
     @keyframes border-anim {
@@ -193,7 +217,15 @@
         $(document).ready(function() {
             setInterval(fetchdata, 10000);
         });
-
+        
+        var toTopButton = document.getElementById("toTop");
+        toTopButton.style.display = "none";
+        document.querySelector('body').onscroll = function() {
+            if (window.scrollY > 150)
+                toTopButton.style.display = "block";
+            else
+                toTopButton.style.display = "none";
+        };
 
 
     })(jQuery);
