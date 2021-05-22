@@ -167,12 +167,8 @@
                             htmlText += '<p>Pincode: ' + resdata[key].pincode + '</p>';
                             htmlText += '<p>Address: ' + resdata[key].address + '</p>';
                             htmlText += '<p>Doses Available: ' + resdata[key].available_capacity + '</p>';
-                            if (resdata[key].available_capacity_dose1 > 0) {
-                                htmlText += '<p>Doses Available For Dose 1: ' + resdata[key].available_capacity_dose1 + '</p>';
-                            }
-                            if (resdata[key].available_capacity_dose2 > 0) {
-                                htmlText += '<p>Doses Available For Dose 2: ' + resdata[key].available_capacity_dose2 + '</p>';
-                            }
+                            htmlText += '<p>Doses Available For Dose 1: ' + resdata[key].available_capacity_dose1 + '</p>';
+                            htmlText += '<p>Doses Available For Dose 2: ' + resdata[key].available_capacity_dose2 + '</p>';
                             htmlText += '<p>Vaccine: ' + resdata[key].vaccine + '</p>';
                             htmlText += '<p>Min Age: ' + resdata[key].min_age_limit + '</p>';
                             htmlText += '<p>Time Slot: ' + resdata[key].from + ' To ' + resdata[key].to + '</p>';
