@@ -40,7 +40,24 @@
 </head>
 
 <body>
-    <header>
+    <header id="top">
+        <div id="minAge18">
+            <p>Min Age 18+</p>
+            <label class="switch">
+            <input id="check18" type="checkbox" checked >
+            <div>
+                <span></span>
+            </div>
+        </label></div>
+        <div id="minAge45">
+            <p>Min Age 45+</p>
+            <label class="switch">
+            <input id="check45" type="checkbox" checked>
+            <div>
+                <span></span>
+            </div>
+        </label></div>
+
         <a href="mailto:anand.patil@kreevi.com">Built by <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 961.6 370"><defs><linearGradient x1="852.8" y1="171.2" x2="796.5" y2="227.4" gradientTransform="translate(923.82 356.97) rotate(180)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#353535"/><stop offset="0.83" stop-color="#066"/></linearGradient></defs><g data-name="Layer 1"><g isolation="isolate"><text transform="translate(275.21 271.81)" style="fill:#a7aa00;font-family:TimeBurner-Bold, TimeBurner;font-size:250.795654296875px;font-weight:700;isolation:isolate">  K</text><text transform="translate(424.44 271.81)" style="fill:#a7aa00;font-family:TimeBurner;font-size:250.795654296875px;isolation:isolate;letter-spacing:-0.06000044779359441em">  r</text><text transform="translate(497.17 271.81)" style="fill:#066;font-family:TimeBurner;font-size:250.795654296875px;isolation:isolate;letter-spacing:-0.014000364075661543em">  e</text><text transform="translate(645.89 271.81)" style="fill:#066;font-family:TimeBurner;font-size:250.795654296875px;isolation:isolate;letter-spacing:-0.05200051788302658em">  e</text><text transform="translate(786.09 271.81)" style="fill:#066;font-family:TimeBurner;font-size:250.795654296875px;isolation:isolate">  vi</text></g><path d="M186.8 0 47.5 120.4c-50.8 43.9-50.8 115.2 0 159.1h0L186.8 159.2C237.7 115.2 237.7 44 186.8 0" fill="#066"/><path d="M71.9 99.4l32.4-28h0c-17.9 15.5-17.9 40.5 0 56l59.7 51.6h0L71.9 258.5h0C21 214.6 21 143.3 71.9 99.4Z" fill="url(#linear-gradient)"/><path d="M33.2 132.5h0l28.2-24.4h0c-15.6 13.5-15.6 35.3 0 48.7l52 44.9L274.8 341.3h0c-44.3 38.3-116.1 38.3-160.3 0L33.2 271.1h0C-11.1 232.8-11.1 170.8 33.2 132.5Z" fill="#a7aa00"/></g></svg>
         </a>
     </header>
@@ -156,6 +173,113 @@
         fill: #066;
     }
     
+    #minAge18,
+    #minAge45 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 1;
+        gap: 10px;
+    }
+    
+    .switch {
+        --line: #E8EBFB;
+        --dot: #a7aa00;
+        --circle: #D3D4EC;
+        --background: #fff;
+        --duration: .3s;
+        --text: #9EA0BE;
+        --shadow: 0 1px 3px rgba(0, 9, 61, 0.08);
+        cursor: pointer;
+        position: relative;
+    }
+    
+    .switch:before {
+        content: "";
+        width: 60px;
+        height: 32px;
+        border-radius: 16px;
+        background: var(--background);
+        position: absolute;
+        left: 0;
+        top: 0;
+        box-shadow: var(--shadow);
+    }
+    
+    .switch input {
+        display: none;
+    }
+    
+    .switch input+div {
+        position: relative;
+    }
+    
+    .switch input+div:before,
+    .switch input+div:after {
+        --s: 1;
+        content: "";
+        position: absolute;
+        height: 4px;
+        top: 14px;
+        width: 24px;
+        background: var(--line);
+        transform: scaleX(var(--s));
+        transition: transform var(--duration) ease;
+    }
+    
+    .switch input+div:before {
+        --s: 0;
+        left: 4px;
+        transform-origin: 0 50%;
+        border-radius: 2px 0 0 2px;
+    }
+    
+    .switch input+div:after {
+        left: 32px;
+        transform-origin: 100% 50%;
+        border-radius: 0 2px 2px 0;
+    }
+    
+    .switch input+div span {
+        padding-left: 60px;
+        line-height: 28px;
+        color: var(--text);
+    }
+    
+    .switch input+div span:before {
+        --x: 0;
+        --b: var(--circle);
+        --s: 4px;
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 4px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 var(--s) var(--b);
+        transform: translateX(var(--x));
+        transition: box-shadow var(--duration) ease, transform var(--duration) ease;
+    }
+    
+    .switch input+div span:not(:empty) {
+        padding-left: 68px;
+    }
+    
+    .switch input:checked+div:before {
+        --s: 1;
+    }
+    
+    .switch input:checked+div:after {
+        --s: 0;
+    }
+    
+    .switch input:checked+div span:before {
+        --x: 28px;
+        --s: 12px;
+        --b: var(--dot);
+    }
+    
     @keyframes border-anim {
         from {
             box-shadow: 0 2px 2px 0 #066, 0 3px 1px -2px #066, 0 1px 5px 0 #066;
@@ -182,6 +306,51 @@
 </style>
 <script>
     (function($) {
+
+        $('#check18').on('change', function() {
+            if ($(this).prop('checked')) {
+                fetchdata18();
+
+            } else {
+                alert("un-checked");
+                return;
+            }
+        });
+        $('#check45').on('change', function() {
+            if ($(this).prop('checked')) {
+                fetchdata45();
+
+            }
+        });
+
+        
+        setInterval(function() {
+            if ($("#check18:checked").length == 1 && $("#check45:checked").length == 1) {
+                fetchdata();
+            } else if ($("#check45:checked").length == 1 && $("#check18:checked").length == 0) {
+                fetchdata45();
+            } else if ($("#check18:checked").length == 1 && $("#check45:checked").length == 0) {
+                fetchdata18();
+            } else {
+                return;
+            }
+        }, 10000);
+
+        var toTopButton = document.getElementById("toTop");
+        toTopButton.style.display = "none";
+        document.querySelector('body').onscroll = function() {
+            if (window.scrollY > 150)
+                toTopButton.style.display = "block";
+            else
+                toTopButton.style.display = "none";
+        };
+
+    })(jQuery);
+
+
+    function fetchdata() {
+        console.log("main ran");
+
         Date.prototype.yyyymmdd = function() {
             var yyyy = this.getFullYear().toString();
             var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
@@ -196,67 +365,183 @@
 
         var fetchurl = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=' + district + '&date=' + date.yyyymmdd();
 
-        function fetchdata() {
-            $.ajax({
-                // url: 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=57&date=15-05-2021',
-                url: fetchurl,
-                method: "GET",
-                type: "JSON",
-                contentType: 'application/json; charset=utf-8',
-                success: function(data) {
-                    // $("#data").html(JSON.stringify(data.sessions, null, 2));
+        $.ajax({
+            // url: 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=57&date=15-05-2021',
+            url: fetchurl,
+            method: "GET",
+            type: "JSON",
+            contentType: 'application/json; charset=utf-8',
+            success: function(data) {
+                // $("#data").html(JSON.stringify(data.sessions, null, 2));
 
-                    // console.log(data);
-                    var sessions_arr = data.sessions;
-                    // console.log(sessions_arr);
+                var sessions_arr = data.sessions;
+                // console.log(sessions_arr);
 
-                    resdata = data.sessions;
-                    var htmlText = '';
-                    for (var key in resdata) {
-                        if (resdata[key].available_capacity > 0) {
-                            htmlText += '<div class="container">';
-                            htmlText += '<p>Name: ' + resdata[key].name + '</p>';
-                            htmlText += '<p>Pincode: ' + resdata[key].pincode + '</p>';
-                            htmlText += '<p>Address: ' + resdata[key].address + '</p>';
-                            htmlText += '<p>Doses Available: ' + resdata[key].available_capacity + '</p>';
-                            htmlText += '<p>Doses Available For Dose 1: ' + resdata[key].available_capacity_dose1 + '</p>';
-                            htmlText += '<p>Doses Available For Dose 2: ' + resdata[key].available_capacity_dose2 + '</p>';
-                            htmlText += '<p>Vaccine: ' + resdata[key].vaccine + '</p>';
-                            htmlText += '<p>Min Age: ' + resdata[key].min_age_limit + '</p>';
-                            htmlText += '<p>Time Slot: ' + resdata[key].from + ' To ' + resdata[key].to + '</p>';
-                            htmlText += '</div>';
-                        }
+                resdata = data.sessions;
+                var htmlText = '';
+                for (var key in resdata) {
+
+
+
+                    if (resdata[key].available_capacity > 0) {
+                        // console.log(resdata[key]);
+                        // console.log("==============================");
+                        htmlText += '<div class="container">';
+                        htmlText += '<p>Name: ' + resdata[key].name + '</p>';
+                        htmlText += '<p>Pincode: ' + resdata[key].pincode + '</p>';
+                        htmlText += '<p>Address: ' + resdata[key].address + '</p>';
+                        htmlText += '<p>Doses Available: ' + resdata[key].available_capacity + '</p>';
+                        htmlText += '<p>Doses Available For Dose 1: ' + resdata[key].available_capacity_dose1 + '</p>';
+                        htmlText += '<p>Doses Available For Dose 2: ' + resdata[key].available_capacity_dose2 + '</p>';
+                        htmlText += '<p>Vaccine: ' + resdata[key].vaccine + '</p>';
+                        htmlText += '<p id="minAge">Min Age: ' + resdata[key].min_age_limit + '</p>';
+                        htmlText += '<p>Time Slot: ' + resdata[key].from + ' To ' + resdata[key].to + '</p>';
+                        htmlText += '</div>';
                     }
-                    $('.wrapper').prepend(htmlText);
-                    if (resdata[0] != undefined) {
-                        console.log(resdata[0]);
-                        $(".audioPlayer")[0].play();
-                    }
-                    // }
-
-
-
 
                 }
-            });
-        }
-        fetchdata();
+                $('.wrapper').prepend(htmlText);
+                if (resdata[0] != undefined) {
+                    // console.log(resdata[0]);
+                    $(".audioPlayer")[0].play();
+                }
+                // }
 
-        $(document).ready(function() {
-            setInterval(fetchdata, 10000);
+
+
+
+            }
         });
-        
-        var toTopButton = document.getElementById("toTop");
-        toTopButton.style.display = "none";
-        document.querySelector('body').onscroll = function() {
-            if (window.scrollY > 150)
-                toTopButton.style.display = "block";
-            else
-                toTopButton.style.display = "none";
+    }
+
+    function fetchdata18() {
+        console.log("18 ran");
+
+
+        Date.prototype.yyyymmdd = function() {
+            var yyyy = this.getFullYear().toString();
+            var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
+            var dd = this.getDate().toString();
+            return (dd[1] ? dd : "0" + dd[0]) + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + yyyy; // padding
         };
 
+        var date = new Date();
+        console.log(date.yyyymmdd())
+        var district = 363;
 
-    })(jQuery);
+        var fetchurl = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=' + district + '&date=' + date.yyyymmdd();
+        $.ajax({
+            url: fetchurl,
+            method: "GET",
+            type: "JSON",
+            contentType: 'application/json; charset=utf-8',
+            success: function(data) {
+                // $("#data").html(JSON.stringify(data.sessions, null, 2));
+
+                var sessions_arr = data.sessions;
+                // console.log(sessions_arr);
+
+                resdata = data.sessions;
+                var htmlText = '';
+                for (var key in resdata) {
+
+
+
+                    if (resdata[key].available_capacity > 0 && resdata[key].min_age_limit == 18) {
+                        // console.log(resdata[key]);
+                        // console.log("==============================");
+                        htmlText += '<div class="container">';
+                        htmlText += '<p>Name: ' + resdata[key].name + '</p>';
+                        htmlText += '<p>Pincode: ' + resdata[key].pincode + '</p>';
+                        htmlText += '<p>Address: ' + resdata[key].address + '</p>';
+                        htmlText += '<p>Doses Available: ' + resdata[key].available_capacity + '</p>';
+                        htmlText += '<p>Doses Available For Dose 1: ' + resdata[key].available_capacity_dose1 + '</p>';
+                        htmlText += '<p>Doses Available For Dose 2: ' + resdata[key].available_capacity_dose2 + '</p>';
+                        htmlText += '<p>Vaccine: ' + resdata[key].vaccine + '</p>';
+                        htmlText += '<p id="minAge">Min Age: ' + resdata[key].min_age_limit + '</p>';
+                        htmlText += '<p>Time Slot: ' + resdata[key].from + ' To ' + resdata[key].to + '</p>';
+                        htmlText += '</div>';
+                    }
+
+                }
+                $('.wrapper').prepend(htmlText);
+                if (resdata[0] != undefined) {
+                    // console.log(resdata[0]);
+                    $(".audioPlayer")[0].play();
+                }
+                // }
+
+
+
+
+            }
+        });
+    }
+
+    function fetchdata45() {
+        console.log("45 ran");
+        Date.prototype.yyyymmdd = function() {
+            var yyyy = this.getFullYear().toString();
+            var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
+            var dd = this.getDate().toString();
+            return (dd[1] ? dd : "0" + dd[0]) + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + yyyy; // padding
+        };
+
+        var date = new Date();
+        console.log(date.yyyymmdd())
+
+        var district = 363;
+
+        var fetchurl = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=' + district + '&date=' + date.yyyymmdd();
+
+        $.ajax({
+            // url: 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=57&date=15-05-2021',
+            url: fetchurl,
+            method: "GET",
+            type: "JSON",
+            contentType: 'application/json; charset=utf-8',
+            success: function(data) {
+                // $("#data").html(JSON.stringify(data.sessions, null, 2));
+
+                var sessions_arr = data.sessions;
+                // console.log(sessions_arr);
+
+                resdata = data.sessions;
+                var htmlText = '';
+                for (var key in resdata) {
+
+
+
+                    if (resdata[key].available_capacity > 0 && resdata[key].min_age_limit == 45) {
+                        // console.log(resdata[key]);
+                        // console.log("==============================");
+                        htmlText += '<div class="container">';
+                        htmlText += '<p>Name: ' + resdata[key].name + '</p>';
+                        htmlText += '<p>Pincode: ' + resdata[key].pincode + '</p>';
+                        htmlText += '<p>Address: ' + resdata[key].address + '</p>';
+                        htmlText += '<p>Doses Available: ' + resdata[key].available_capacity + '</p>';
+                        htmlText += '<p>Doses Available For Dose 1: ' + resdata[key].available_capacity_dose1 + '</p>';
+                        htmlText += '<p>Doses Available For Dose 2: ' + resdata[key].available_capacity_dose2 + '</p>';
+                        htmlText += '<p>Vaccine: ' + resdata[key].vaccine + '</p>';
+                        htmlText += '<p id="minAge">Min Age: ' + resdata[key].min_age_limit + '</p>';
+                        htmlText += '<p>Time Slot: ' + resdata[key].from + ' To ' + resdata[key].to + '</p>';
+                        htmlText += '</div>';
+                    }
+
+                }
+                $('.wrapper').prepend(htmlText);
+                if (resdata[0] != undefined) {
+                    // console.log(resdata[0]);
+                    $(".audioPlayer")[0].play();
+                }
+                // }
+
+
+
+
+            }
+        });
+    }
 </script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
